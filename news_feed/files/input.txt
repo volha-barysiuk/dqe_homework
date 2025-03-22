@@ -1,0 +1,72 @@
+Extra line in the beginning.
+One more extra line in the beginning.
+News:
+A new museum dedicated to modern art just opened! It's an exciting place for art lovers with an interactive experience.
+Don't miss the grand tour this weekend.
+
+Paris
+
+Private Ad:
+private AD WITH tHE INVALid Case.
+room available FOR rent in a cozy apartment. $450/monTH.
+Near public transpoRT, perfect for students.
+25/03/2025
+
+Rumor:
+A famous actor was seen at a local café with a mystery person. Many believe they are dating.
+Leonardo DiCaprio
+
+News:
+nEWS WITH tHE INVALid Case.
+the city is planning a new subway line to make commuting easier for residents! there will be major improvements in TRANSPORT infrastructure.
+Tbilisi
+
+
+Rumor:
+The singer was seen at a private event with a new partner. Is this a new relationship? Fans are speculating!
+Ariana Grande
+
+Private Ad:
+Private ad, containing past expiry date.
+Selling vintage bicycle, perfect condition, $300.
+Contact for details, only serious inquiries, please!
+12/04/2025
+News:
+News without city.
+The government is launching a new program to promote green energy. Solar panels and wind turbines are the future!
+
+Private Ad:
+Looking for a roommate to share a two-bedroom apartment. $600/month. All utilities included.
+07/04/2025
+
+Rumor:
+
+News:
+A huge music festival will be held this summer with top artists. Tickets are selling fast, so get yours soon!
+London
+
+Private Ad:
+Private ad with invalid date format.
+Offering guitar lessons for beginners. $30 per hour, flexible schedule.
+10.10.1991
+
+Rumor:
+RUMOR WITH INVALID CASE? yes, that's INCORRECT.
+an exclusive source claims the actress is planning a big surprise announcement. wHat could it be?
+Scarlett Johansson
+
+Private Ad:
+Selling a leather sofa in excellent condition. $400 OBO.
+10/10/2026
+
+News:
+There's a new restaurant in town that serves delicious vegan dishes. They are quickly gaining popularity among locals.
+San Francisco
+
+
+
+
+Private Ad:
+Offering a parking space in a secure garage. $100/month.
+Available immediately.
+20/04/2025
