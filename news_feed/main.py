@@ -2,8 +2,8 @@ import os.path
 
 from news_feed.configs import *
 from news_feed.posts.post import Post
-from news_feed.services.file_services import open_file
-from news_feed.services.post_services import publish_post
+from news_feed.services.file_services import read_file, write_csv
+from news_feed.services.post_services import publish_post, write_stats_to_csv
 from news_feed.services.prompt_services import select_option
 from news_feed.utils.parsers import parse_post_list
 
@@ -35,16 +35,18 @@ def main():
                 result = publish_post(option, text, end_line, paths[OUTPUT_FILE], paths[ERROR_FILE], True)
                 if result:
                     print(f'\nPost has been successfully published to: {paths[OUTPUT_FILE]}.')
+                    write_stats_to_csv(paths[OUTPUT_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
                 else:
                     print(f'Error has been logged to: {paths[ERROR_FILE]}.')
             elif option == DEFAULT_FILE:
                 try:
-                    lines = open_file(paths[INPUT_FILE])
+                    lines = read_file(paths[INPUT_FILE])
                     raw_posts = parse_post_list(lines)
                     for post_type, text, end_line in raw_posts:
                         publish_post(post_type, text, end_line, paths[OUTPUT_FILE], paths[ERROR_FILE])
                     print(f'\nThe file {paths[INPUT_FILE]} has been processed.')
                     print(f'If any errors were encountered, they have been logged to: {paths[ERROR_FILE]}.')
+                    write_stats_to_csv(paths[OUTPUT_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
                 except Exception as e:
                     print(e)
             else:

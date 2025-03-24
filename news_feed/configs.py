@@ -6,6 +6,8 @@ from news_feed.posts.rumor import Rumor
 INPUT_FILE_PATH = 'files/input.txt'
 OUTPUT_FILE_PATH = 'files/newsfeed.txt'
 ERROR_FILE_PATH = 'files/errors.txt'
+WORDS_COUNT_PATH = 'files/words_count.csv'
+LETTERS_COUNT_PATH = 'files/letters_count.csv'
 
 # Generic menu options
 EXIT = 'Exit the program'
