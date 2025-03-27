@@ -1,3 +1,5 @@
+from news_feed.configs import NEWS, PRIVATE_AD, RUMOR
+
 def parse_post_list(raw_post_list):
     post_list = []
     first_lines = []
@@ -16,3 +18,22 @@ def parse_post_list(raw_post_list):
         else:
             end_lines.append(line)
     return post_list
+
+
+# Function parses a post list retrieved from JSON file.
+# Parameter: raw_post_list (list): List with posts retrieved from JSON file.
+# Returns: list of data required to create a new post (post type, text, end line specific for each post type)
+def parse_posts_from_json(raw_post_list):
+    posts_list = []
+    end_line_dict = {
+        NEWS: 'city',
+        PRIVATE_AD: 'expiryDate',
+        RUMOR: 'celebrity'
+    }
+    if not raw_post_list:
+        raise ValueError('JSON file should include at least one post.')
+    for post in raw_post_list:
+        posts_list.append([post.get('type'),
+                           post.get('text'),
+                           post.get(end_line_dict.get(post.get('type', ''), ''), '')])
+    return posts_list

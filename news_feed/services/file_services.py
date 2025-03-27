@@ -1,4 +1,5 @@
 import csv
+import json
 
 # Function to append the file with provided text and handle any unexpected errors that may occur during file processing.
 #   Parameter: file_path (str): The path to the file that needs to be read.
@@ -60,3 +61,17 @@ def write_csv_with_headers(content, file_path, delimiter=','):
         raise FileNotFoundError(f'File not found at "{file_path}"')
     except Exception as e:
         raise RuntimeError(f'Unexpected error occurred while writing data into "{file_path}": {e}')
+
+
+def read_json_file(file_path):
+    try:
+        raw_post_list = json.load(open(file_path, 'r', encoding='utf-8'))
+        return raw_post_list
+    except FileNotFoundError:
+        raise FileNotFoundError(f'File not found at "{file_path}"')
+    except Exception as e:
+        raise RuntimeError(f'Unexpected error occurred while reading data from "{file_path}": {e}')
+
+
+
+
