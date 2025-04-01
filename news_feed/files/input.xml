@@ -1,0 +1,40 @@
+<posts>
+  <post type="News">
+    <text>A major storm is EXPECted to hit the COAst this weekend, BRInGING heavy rains and strong winds. Authorities are urging people to prepare for possible flooding.</text>
+    <city>Miami</city>
+  </post>
+
+  <post type="Private Ad">
+    <text>Selling a gently used laptop in excellent condition. Comes with charger and original packaging. Contact me for more details.</text>
+    <expiryDate>11/06/2025</expiryDate>
+  </post>
+
+  <post type="Rumor">
+    <text>There are rumors circulating that a popular actor might be joining a new blockbuster movie. Fans are excited about the possibility of seeing them in a new role.</text>
+    <celebrity>Tom Hanks</celebrity>
+  </post>
+
+  <post type="News">
+    <text>City is missing. The local government has announced a new initiative to reduce traffic congestion in the downtown area by implementing a carpooling program. Residents are encouraged to participate.</text>
+  </post>
+
+  <post type="Private Ad">
+    <text>Past date. Looking to rent out a fully furnished apartment in the city center. Available starting next month. Contact for more information.</text>
+    <expiryDate>05/01/2025</expiryDate>
+  </post>
+
+  <post type="Rumor">
+    <text>There’s buzz around the internet that a famous singer is planning to release a surprise album this summer. Fans are eagerly awaiting confirmation.</text>
+    <celebrity>Ariana Grande</celebrity>
+  </post>
+
+  <post type="News">
+    <text>A new tech startup has launched in the city, promising to revolutionize the way we interact with artificial intelligence in everyday life. The company aims to hire 100 new employees this year.</text>
+    <city>San Francisco</city>
+  </post>
+
+  <post type="Private Ad">
+    <text>Brand new bike for sale, still in its original packaging. Ideal for daily commuting or weekend rides. Open to offers.</text>
+    <expiryDate>30/04/2025</expiryDate>
+  </post>
+</posts>

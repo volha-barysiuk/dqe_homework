@@ -2,10 +2,10 @@ import os.path
 
 from news_feed.configs import *
 from news_feed.posts.post import Post
-from news_feed.services.file_services import read_file, write_csv, read_json_file
-from news_feed.services.post_services import publish_post, write_stats_to_csv
+from news_feed.services.file_services import read_file, write_csv, read_json_file, read_xml_file
+from news_feed.services.post_services import publish_post, publish_multiple_posts, write_stats_to_csv
 from news_feed.services.prompt_services import select_option
-from news_feed.utils.parsers import parse_post_list, parse_posts_from_json
+from news_feed.utils.parsers import parse_post_list, parse_posts_from_json, parse_posts_from_xml
 
 
 # The main function serves as the entry point of the program.
@@ -16,6 +16,7 @@ def main():
     paths = {
         INPUT_FILE: INPUT_FILE_PATH,
         INPUT_JSON: INPUT_JSON_PATH,
+        INPUT_XML: INPUT_XML_PATH,
         OUTPUT_FILE: OUTPUT_FILE_PATH,
         ERROR_FILE: ERROR_FILE_PATH
     }
@@ -43,22 +44,21 @@ def main():
                 try:
                     lines = read_file(paths[INPUT_FILE])
                     raw_posts = parse_post_list(lines)
-                    for post_type, text, end_line in raw_posts:
-                        publish_post(post_type, text, end_line, paths[OUTPUT_FILE], paths[ERROR_FILE])
-                    print(f'\nThe file {paths[INPUT_FILE]} has been processed.')
-                    print(f'If any errors were encountered, they have been logged to: {paths[ERROR_FILE]}.')
-                    write_stats_to_csv(paths[OUTPUT_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
+                    publish_multiple_posts(raw_posts, paths[INPUT_FILE], paths[OUTPUT_FILE], paths[ERROR_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
                 except Exception as e:
                     print(e)
             elif option == DEFAULT_JSON:
                 try:
                     json_posts = read_json_file(paths[INPUT_JSON]).get('posts')
                     raw_posts = parse_posts_from_json(json_posts)
-                    for post_type, text, end_line in raw_posts:
-                        publish_post(post_type, text, end_line, paths[OUTPUT_FILE], paths[ERROR_FILE])
-                    print(f'\nThe file {paths[INPUT_JSON]} has been processed.')
-                    print(f'If any errors were encountered, they have been logged to: {paths[ERROR_FILE]}.')
-                    write_stats_to_csv(paths[OUTPUT_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
+                    publish_multiple_posts(raw_posts, paths[INPUT_JSON], paths[OUTPUT_FILE], paths[ERROR_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
+                except Exception as e:
+                    print(e)
+            elif option == DEFAULT_XML:
+                try:
+                    posts_root = read_xml_file(paths[INPUT_XML])
+                    raw_posts = parse_posts_from_xml(posts_root)
+                    publish_multiple_posts(raw_posts, paths[INPUT_XML], paths[OUTPUT_FILE], paths[ERROR_FILE], WORDS_COUNT_PATH, LETTERS_COUNT_PATH)
                 except Exception as e:
                     print(e)
             else:

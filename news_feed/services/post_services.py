@@ -15,6 +15,14 @@ def create_post(post_type, text, end_line):
         raise AttributeError(f'Cannot create post using provided data:\n{e}')
 
 
+# Function to publish a single post based on user input and store the results in specified output files.
+# Parameters:
+# - post_type (str): Type of the post.
+# - text (str): Text (the main content block) of the post.
+# - end_line (str): The end line custom for each post type (e.g. city for the news or expiry date for the private ad).
+# - output_file_path (str): Path to the output file (e.g., newsfeed.txt) used to store published posts; represents final newsfeed.
+# - error_file_path (str): Path to the file used to write the errors occurring while publishing posts.
+# - manual (bool): If False (default), errors are printed to the console (suitable for manual input). If True, errors are logged only to the error file.
 def publish_post(post_type, text, end_line, output_file_path, error_file_path, manual=False):
     try:
         post = create_post(post_type, text, end_line)
@@ -27,6 +35,23 @@ def publish_post(post_type, text, end_line, output_file_path, error_file_path, m
         if manual:
             print(e)
         return False
+
+
+# Function to publish multiple posts retrieved from specified input files, and store the results into specified output files.
+# Parameters:
+# - raw_posts (list): list of data required to create new posts (post type, text, end line custom for each post type)
+# - input_file_path (str): Path to the input file that stores raw posts; accepts TXT, JSON, XML files.
+# - output_file_path (str): Path to the output file (e.g., newsfeed.txt) used to store published posts; represents final newsfeed.
+# - error_file_path (str): Path to the file used to write the errors occurring while publishing posts.
+# - words_file_path (str): Path to the CSV file where word count statistics will be stored.
+# - letters_file_path (str): Path to the CSV file where letter count statistics will be stored.
+def publish_multiple_posts(raw_posts, input_file_path, output_file_path,
+                           error_file_path, words_count_file_path, letters_count_file_path):
+    for post_type, text, end_line in raw_posts:
+        publish_post(post_type, text, end_line, output_file_path, error_file_path)
+    print(f'\nThe file {input_file_path} has been processed.')
+    print(f'If any errors were encountered, they have been logged to: {error_file_path}.')
+    write_stats_to_csv(output_file_path, words_count_file_path, letters_count_file_path)
 
 
 # Function to calculate the counts of words and letters from the given input file and write the results to separate csv files.
