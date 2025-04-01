@@ -1,5 +1,6 @@
 import csv
 import json
+import xml.etree.ElementTree as ET
 
 # Function to append the file with provided text and handle any unexpected errors that may occur during file processing.
 #   Parameter: file_path (str): The path to the file that needs to be read.
@@ -63,6 +64,10 @@ def write_csv_with_headers(content, file_path, delimiter=','):
         raise RuntimeError(f'Unexpected error occurred while writing data into "{file_path}": {e}')
 
 
+# Function to read the contents of a JSON file (the content gets stored as dictionary data type)
+# and handle any unexpected errors that may occur during file processing.
+#   Parameters:
+#   - file_path (str): The path to the JSON file that needs to be read.
 def read_json_file(file_path):
     try:
         raw_post_list = json.load(open(file_path, 'r', encoding='utf-8'))
@@ -73,5 +78,16 @@ def read_json_file(file_path):
         raise RuntimeError(f'Unexpected error occurred while reading data from "{file_path}": {e}')
 
 
-
-
+# Function to read the contents of an XML file (the content gets stored as etree element)
+# and handle any unexpected errors that may occur during file processing.
+#   Parameters:
+#   - file_path (str): The path to the XML file that needs to be read.
+def read_xml_file(file_path):
+    try:
+        tree = ET.parse(file_path)
+        posts_root = tree.getroot()
+        return posts_root
+    except FileNotFoundError:
+        raise FileNotFoundError(f'File not found at "{file_path}"')
+    except Exception as e:
+        raise RuntimeError(f'Unexpected error occurred while reading data from "{file_path}": {e}')
