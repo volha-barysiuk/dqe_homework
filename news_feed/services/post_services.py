@@ -1,4 +1,6 @@
-from news_feed.configs import CLASSES
+import pyodbc
+
+from news_feed.configs import CLASSES, DB_CONN_CONFIGS
 from news_feed.posts import news, private_ad, rumor
 from news_feed.services.file_services import write_file, read_file, write_csv, write_csv_with_headers
 from news_feed.utils.text_utils import count_entity, get_stats
@@ -16,6 +18,7 @@ def create_post(post_type, text, end_line):
 
 
 # Function to publish a single post based on user input and store the results in specified output files.
+# Additionally, the function stores the posts in the database if no matching posts are found.
 # Parameters:
 # - post_type (str): Type of the post.
 # - text (str): Text (the main content block) of the post.
@@ -26,8 +29,15 @@ def create_post(post_type, text, end_line):
 def publish_post(post_type, text, end_line, output_file_path, error_file_path, manual=False):
     try:
         post = create_post(post_type, text, end_line)
-        post.publish(output_file_path)
-        return True
+        try:
+            with pyodbc.connect(DB_CONN_CONFIGS) as conn:
+                if post.is_stored_in_db(conn):
+                    raise ValueError('Post already exists.')
+                post.publish(output_file_path)
+                post.store_in_db(conn)
+                return True
+        except pyodbc.Error:
+            raise ValueError('Your post could not be processed due to a database error.')
     except Exception as e:
         sep = '=' * 40
         content = '\n'.join([sep, str(e), sep, post_type + ':', text, end_line, '\n\n'])

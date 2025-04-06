@@ -2,6 +2,9 @@ from news_feed.posts.news import News
 from news_feed.posts.private_ad import PrivateAd
 from news_feed.posts.rumor import Rumor
 
+# DB connection configs
+DB_CONN_CONFIGS='DRIVER={SQLite3 ODBC Driver};DATABASE=db/posts_storage.db;'
+
 # Default file paths
 INPUT_FILE_PATH = 'files/input.txt'
 INPUT_JSON_PATH = 'files/input.json'
