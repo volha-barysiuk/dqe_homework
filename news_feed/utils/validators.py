@@ -29,6 +29,7 @@ def validate_future_date(date, future_date):
         raise ValueError('Past dates are not allowed.')
     return future_date
 
+
 # Validate given console option selected by user,
 # Raise error if it's not integer and if it's not in the range of possible choice options.
 def validate_int(num, start=1, end=5):

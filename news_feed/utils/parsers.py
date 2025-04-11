@@ -1,4 +1,4 @@
-from news_feed.configs import NEWS, PRIVATE_AD, RUMOR
+from ..configs import NEWS, PRIVATE_AD, RUMOR
 
 
 def parse_post_list(raw_post_list):
@@ -59,4 +59,3 @@ def parse_posts_from_xml(posts_root):
         end_line_text = end_line_el.text if end_line_el is not None else ''
         posts_list.append([type_, text, end_line_text])
     return posts_list
-

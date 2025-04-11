@@ -1,18 +1,23 @@
-from news_feed.posts.news import News
-from news_feed.posts.private_ad import PrivateAd
-from news_feed.posts.rumor import Rumor
+import os
+
+from .posts.news import News
+from .posts.private_ad import PrivateAd
+from .posts.rumor import Rumor
 
 # DB connection configs
-DB_CONN_CONFIGS='DRIVER={SQLite3 ODBC Driver};DATABASE=db/posts_storage.db;'
+DB_NAME = 'posts_storage.db'
+DB_PATH = os.path.join('news_feed', DB_NAME)
+DB_CONN = 'DRIVER={SQLite3 ODBC Driver};DATABASE=' + DB_PATH + ';'
 
 # Default file paths
-INPUT_FILE_PATH = 'files/input.txt'
-INPUT_JSON_PATH = 'files/input.json'
-INPUT_XML_PATH = 'files/input.xml'
-OUTPUT_FILE_PATH = 'files/newsfeed.txt'
-ERROR_FILE_PATH = 'files/errors.txt'
-WORDS_COUNT_PATH = 'files/words_count.csv'
-LETTERS_COUNT_PATH = 'files/letters_count.csv'
+FILE_PATH = os.path.join('news_feed', 'files')
+INPUT_FILE_PATH = os.path.join(FILE_PATH, 'input.txt')
+INPUT_JSON_PATH = os.path.join(FILE_PATH, 'input.json')
+INPUT_XML_PATH = os.path.join(FILE_PATH, 'input.xml')
+OUTPUT_FILE_PATH = os.path.join(FILE_PATH, 'newsfeed.txt')
+ERROR_FILE_PATH = os.path.join(FILE_PATH, 'errors.txt')
+WORDS_COUNT_PATH = os.path.join(FILE_PATH, 'words_count.csv')
+LETTERS_COUNT_PATH = os.path.join(FILE_PATH, 'letters_count.csv')
 
 # Generic menu options
 EXIT = 'Exit the program'

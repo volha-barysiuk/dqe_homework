@@ -1,6 +1,7 @@
 import collections
 import re
 
+
 # Normalize case of each sentence in given text
 def normalize_text_case(text):
     sentences_lst = re.split(r'([.!?]\s*|:\s*\n\s*)', text)
@@ -49,4 +50,3 @@ def get_stats(counted_entities):
             }
     result = list(entity_stats.values())
     return sorted(result, key=lambda x: x['letter'])
-

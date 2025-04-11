@@ -17,7 +17,7 @@ class News(Post):
 
     # Combine end line in format: "<City>, <Current date in required format>"
     def _add_end_line(self):
-        return f'{self._city}, {self._cur_date.strftime('%d/%m/%Y %H.%M')}'
+        return f'{self._city}, {self._cur_date.strftime("%d/%m/%Y %H.%M")}'
 
     # Verify if post already exists in database
     def is_stored_in_db(self, connection):
@@ -35,4 +35,3 @@ class News(Post):
             post_id = cursor.fetchone()[0]
             cursor.execute('INSERT INTO News (post_id, text, city) VALUES (?, ?, ?)', (post_id, self._text, self._city))
             connection.commit()
-

@@ -1,5 +1,6 @@
 from ..utils.validators import validate_int
 
+
 # A prompt service to interact with the user based on the selected options.
 # It validates the user's input, allows navigation between main and sub-menus, and exits the program if chosen.
 def select_option(option_list):

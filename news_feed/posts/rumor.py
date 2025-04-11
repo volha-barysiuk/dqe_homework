@@ -47,5 +47,6 @@ class Rumor(Post):
             cursor.execute('INSERT INTO Posts (type_id, create_date) VALUES (?, ?)', (self.type_id, self._cur_date))
             cursor.execute("SELECT last_insert_rowid()")
             post_id = cursor.fetchone()[0]
-            cursor.execute('INSERT INTO Rumor (post_id, text, celebrity) VALUES (?, ?, ?)', (post_id, self._text, self._celebrity))
+            cursor.execute('INSERT INTO Rumor (post_id, text, celebrity) VALUES (?, ?, ?)',
+                           (post_id, self._text, self._celebrity))
             connection.commit()
