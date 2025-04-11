@@ -19,7 +19,7 @@ class PrivateAd(Post):
     def _add_end_line(self):
         exp_date = self._exp_date.strftime('%d/%m/%Y')
         days_diff = (self._exp_date - self._cur_date).days
-        return f'Actual until: {exp_date}, {days_diff} day{'' if days_diff == 1 else 's'} left'
+        return f"Actual until: {exp_date}, {days_diff} day{'' if days_diff == 1 else 's'} left"
 
     # Verify if post already exists in database
     def is_stored_in_db(self, connection):
@@ -29,11 +29,12 @@ class PrivateAd(Post):
             return result
 
     # Write post into database.
-    # The data is populated in two tables: the Posts table and the table for storing posts of required type, e.g. PrivateAd
+    # The data is populated in two tables: the Posts table and the table for storing posts of required type
     def store_in_db(self, connection):
         with connection.cursor() as cursor:
             cursor.execute('INSERT INTO Posts (type_id, create_date) VALUES (?, ?)', (self.type_id, self._cur_date))
             cursor.execute("SELECT last_insert_rowid()")
             post_id = cursor.fetchone()[0]
-            cursor.execute('INSERT INTO PrivateAd (post_id, text, expiry_date) VALUES (?, ?, ?)', (post_id, self._text, self._exp_date))
+            cursor.execute('INSERT INTO PrivateAd (post_id, text, expiry_date) VALUES (?, ?, ?)',
+                           (post_id, self._text, self._exp_date))
             connection.commit()

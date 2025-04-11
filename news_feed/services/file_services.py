@@ -2,6 +2,7 @@ import csv
 import json
 import xml.etree.ElementTree as ET
 
+
 # Function to append the file with provided text and handle any unexpected errors that may occur during file processing.
 #   Parameter: file_path (str): The path to the file that needs to be read.
 def write_file(content, file_path):
@@ -17,7 +18,7 @@ def write_file(content, file_path):
 # Function to read the contents of a file and handle any unexpected errors that may occur during file processing.
 #   Parameters:
 #   - file_path (str): The path to the file that needs to be read.
-#   - read_lines (bool): Flag to determine whether to read the file line by line (True) or as a single string (False). Default is True.
+#   - read_lines (bool): Flag to determine whether to read the file line by line (True) or as a single string (False).
 def read_file(file_path, read_lines=True):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -46,7 +47,7 @@ def write_csv(content, file_path, delimiter=','):
         raise RuntimeError(f'Unexpected error occurred while writing data into "{file_path}": {e}')
 
 
-# Function to write the text into csv file with headers and handle any unexpected errors that may occur during file processing.
+# Function to write the text into csv file with headers and handle any unexpected errors.
 #   Parameters:
 #   - content (dict): Text to be written.
 #   - file_path (str): The path to the csv file that needs to be read.

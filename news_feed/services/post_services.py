@@ -1,9 +1,8 @@
 import pyodbc
 
-from news_feed.configs import CLASSES, DB_CONN_CONFIGS
-from news_feed.posts import news, private_ad, rumor
-from news_feed.services.file_services import write_file, read_file, write_csv, write_csv_with_headers
-from news_feed.utils.text_utils import count_entity, get_stats
+from ..configs import CLASSES, DB_CONN
+from .file_services import write_file, read_file, write_csv, write_csv_with_headers
+from ..utils.text_utils import count_entity, get_stats
 
 
 # The create_post function works with post text and additional details based on the post type.
@@ -30,7 +29,7 @@ def publish_post(post_type, text, end_line, output_file_path, error_file_path, m
     try:
         post = create_post(post_type, text, end_line)
         try:
-            with pyodbc.connect(DB_CONN_CONFIGS) as conn:
+            with pyodbc.connect(DB_CONN) as conn:
                 if post.is_stored_in_db(conn):
                     raise ValueError('Post already exists.')
                 post.publish(output_file_path)
