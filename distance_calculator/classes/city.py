@@ -74,3 +74,4 @@ def fetch_city_from_db(city, connection):
         except Exception as e:
             print(f'Unexpected error appeared when fetching city from database: {e}')
         return None
+

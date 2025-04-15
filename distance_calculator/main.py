@@ -1,9 +1,18 @@
+import os
 import sys
 import pyodbc
 
 from classes.city import City, fetch_city_from_db
 from resources import utils
-from db_setup import DB_CONN
+from db_setup import create_city_storage_db
+
+# Root directory
+ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
+
+# DB configs
+DB_NAME = 'city_storage.db'
+DB_PATH = os.path.join(ROOT_PATH, DB_NAME)
+DB_CONN = 'DRIVER={SQLite3 ODBC Driver};DATABASE=' + DB_PATH + ';'
 
 
 # Decorator that prompts the user to try again if an exception occurred during input
@@ -84,6 +93,8 @@ def main():
           "Eager to find out the distance between cities? Let's dive in!")
 
     # Establish database connection
+    if not os.path.exists(DB_PATH):
+        create_city_storage_db(DB_PATH, DB_CONN)
     with pyodbc.connect(DB_CONN) as conn:
         while True:
             # Perform distance calculation
@@ -97,7 +108,9 @@ def main():
                 # Exit message
                 print("\nMission accomplished! If you're not flying around in a private jet, "
                       "maybe double-check the distance online.\n✈️ Bon voyage! ✈️\n")
+                return False
 
 
 if __name__ == '__main__':
     main()
+
