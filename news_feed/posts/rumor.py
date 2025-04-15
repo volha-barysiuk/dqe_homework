@@ -1,7 +1,7 @@
 from random import choice
 
-from .post import Post
-from ..utils import validators
+from news_feed.posts.post import Post
+from news_feed.utils import validators
 
 
 # Rumor class inherits from the Post class and represents a Rumor post.

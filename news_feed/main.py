@@ -1,7 +1,10 @@
 import os.path
 
+import pyodbc
+
 from news_feed.configs import *
 from news_feed.posts.post import Post
+from news_feed.services.db_services import fetch_posts_from_db
 from news_feed.services.file_services import read_file, read_json_file, read_xml_file
 from news_feed.services.post_services import publish_post, publish_multiple_posts, write_stats_to_csv
 from news_feed.services.prompt_services import select_option

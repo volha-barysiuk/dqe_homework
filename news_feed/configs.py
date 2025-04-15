@@ -1,16 +1,19 @@
 import os
 
-from .posts.news import News
-from .posts.private_ad import PrivateAd
-from .posts.rumor import Rumor
+from news_feed.posts.news import News
+from news_feed.posts.private_ad import PrivateAd
+from news_feed.posts.rumor import Rumor
+
+# Root directory
+ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # DB connection configs
 DB_NAME = 'posts_storage.db'
-DB_PATH = os.path.join('news_feed', DB_NAME)
+DB_PATH = os.path.join(ROOT_PATH, DB_NAME)
 DB_CONN = 'DRIVER={SQLite3 ODBC Driver};DATABASE=' + DB_PATH + ';'
 
 # Default file paths
-FILE_PATH = os.path.join('news_feed', 'files')
+FILE_PATH = os.path.join(ROOT_PATH, 'files')
 INPUT_FILE_PATH = os.path.join(FILE_PATH, 'input.txt')
 INPUT_JSON_PATH = os.path.join(FILE_PATH, 'input.json')
 INPUT_XML_PATH = os.path.join(FILE_PATH, 'input.xml')

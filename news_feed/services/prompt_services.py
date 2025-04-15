@@ -1,4 +1,4 @@
-from ..utils.validators import validate_int
+from news_feed.utils.validators import validate_int
 
 
 # A prompt service to interact with the user based on the selected options.

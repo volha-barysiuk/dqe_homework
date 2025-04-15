@@ -1,5 +1,5 @@
-from .post import Post
-from ..utils import validators
+from news_feed.posts.post import Post
+from news_feed.utils import validators
 
 
 # News class inherits from the Post class and represents a News post.

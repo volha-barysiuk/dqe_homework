@@ -1,7 +1,6 @@
 from datetime import datetime
-
-from ..utils import validators, text_utils
-from ..services import file_services
+from news_feed.utils import validators, text_utils
+from news_feed.services import file_services
 
 
 # Post class serves as the parent class for different types of publications (News, Ads, Rumors, etc.).
