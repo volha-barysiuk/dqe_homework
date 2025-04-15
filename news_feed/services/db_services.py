@@ -2,7 +2,7 @@ import sqlite3
 import pyodbc
 
 
-# Function to create the posts_storage database and fill it with few default cities.
+# Function to create the posts_storage database and fill it with predefined post type.
 # Parameters:
 # - db_path (str): the path to a SQLite database, used by sqlite3 to open (or create) a SQLite database at that path.
 # - db_conn (str): the connection string used by pyodbc to connect to a particular database.
